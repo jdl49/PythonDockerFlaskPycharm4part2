@@ -2,6 +2,7 @@ CREATE DATABASE cities_table;
 use cities_table;
 
 CREATE TABLE IF NOT EXISTS cities_csv (
+    `id` INT AUTO_INCREMENT,
     `LatD` INT,
     `LatM` INT,
     `LatS` INT,
@@ -11,9 +12,10 @@ CREATE TABLE IF NOT EXISTS cities_csv (
     `LonS` INT,
     `EW` VARCHAR(4) CHARACTER SET utf8,
     `City` VARCHAR(21) CHARACTER SET utf8,
-    `State` VARCHAR(4) CHARACTER SET utf8
+    `State` VARCHAR(4) CHARACTER SET utf8,
+    primary key (`id`)
 );
-INSERT INTO cities_csv VALUES
+INSERT INTO cities_csv (LatD, LatM, LatS, NS, LonD, LonM, LonS, EW, City, State) VALUES
     (   41,    5,   59,' "N"',     80,   39,    0,' "W"',' "Youngstown"',' OH'),
     (   42,   52,   48,' "N"',     97,   23,   23,' "W"',' "Yankton"',' SD'),
     (   46,   35,   59,' "N"',    120,   30,   36,' "W"',' "Yakima"',' WA'),
