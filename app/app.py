@@ -44,11 +44,11 @@ def form_edit_get(city_id):
 @app.route('/edit/<int:city_id>', methods=['POST'])
 def form_update_post(city_id):
     cursor = mysql.get_db().cursor()
-    inputData = (request.form.get('fldName'), request.form.get('fldLat'), request.form.get('fldLong'),
-                 request.form.get('fldCountry'), request.form.get('fldAbbreviation'),
-                 request.form.get('fldCapitalStatus'), request.form.get('fldPopulation'), city_id)
-    sql_update_query = """UPDATE cities_table.cities_csv t SET t.fldName = %s, t.fldLat = %s, t.fldLong = %s, t.fldCountry = 
-    %s, t.fldAbbreviation = %s, t.fldCapitalStatus = %s, t.fldPopulation = %s WHERE t.id = %s """
+    inputData = (request.form.get('LatD'), request.form.get('LatM'), request.form.get('LatS'),
+                 request.form.get('NS'), request.form.get('LonD'),
+                 request.form.get('LonM'), request.form.get('LonS'), city_id)
+    sql_update_query = """UPDATE cities_table.cities_csv t SET t.LatD = %s, t.LatM = %s, t.LatS = %s, t.NS = 
+    %s, t.LonD = %s, t.LonM = %s, t.LonS = %s WHERE t.id = %s """
     cursor.execute(sql_update_query, inputData)
     mysql.get_db().commit()
     return redirect("/", code=302)
@@ -61,10 +61,10 @@ def form_insert_get():
 @app.route('/cities/new', methods=['POST'])
 def form_insert_post():
     cursor = mysql.get_db().cursor()
-    inputData = (request.form.get('fldName'), request.form.get('fldLat'), request.form.get('fldLong'),
-                 request.form.get('fldCountry'), request.form.get('fldAbbreviation'),
-                 request.form.get('fldCapitalStatus'), request.form.get('fldPopulation'))
-    sql_insert_query = """INSERT INTO cities_table.cities_csv (fldName,fldLat,fldLong,fldCountry,fldAbbreviation,fldCapitalStatus,fldPopulation) VALUES (%s, %s,%s, %s,%s, %s,%s) """
+    inputData = (request.form.get('LatD'), request.form.get('LatM'), request.form.get('LatS'),
+                 request.form.get('NS'), request.form.get('LonD'),
+                 request.form.get('LonM'), request.form.get('LonS'))
+    sql_insert_query = """INSERT INTO cities_table.cities_csv (LatD,LatM,LatS,NS,LonD,LonM,LonS) VALUES (%s, %s,%s, %s,%s, %s,%s) """
     cursor.execute(sql_insert_query, inputData)
     mysql.get_db().commit()
     return redirect("/", code=302)
@@ -102,11 +102,11 @@ def api_retrieve(city_id) -> str:
 def api_edit(city_id) -> str:
     cursor = mysql.get_db().cursor()
     content = request.json
-    inputData = (content['fldName'], content['fldLat'], content['fldLong'],
-                 content['fldCountry'], content['fldAbbreviation'],
-                 content['fldCapitalStatus'], content['fldPopulation'],city_id)
-    sql_update_query = """UPDATE cities_table.cities_csv t SET t.fldName = %s, t.fldLat = %s, t.fldLong = %s, t.fldCountry = 
-        %s, t.fldAbbreviation = %s, t.fldCapitalStatus = %s, t.fldPopulation = %s WHERE t.id = %s """
+    inputData = (content['LatD'], content['LatM'], content['LatS'],
+                 content['NS'], content['LonD'],
+                 content['LonM'], content['LonS'],city_id)
+    sql_update_query = """UPDATE cities_table.cities_csv t SET t.LatD = %s, t.LatM = %s, t.LatS = %s, t.NS = 
+        %s, t.LonD = %s, t.LonM = %s, t.LonS = %s WHERE t.id = %s """
     cursor.execute(sql_update_query, inputData)
     mysql.get_db().commit()
     resp = Response(status=200, mimetype='application/json')
@@ -118,10 +118,10 @@ def api_add() -> str:
     content = request.json
 
     cursor = mysql.get_db().cursor()
-    inputData = (content['fldName'], content['fldLat'], content['fldLong'],
-                 content['fldCountry'], content['fldAbbreviation'],
-                 content['fldCapitalStatus'], request.form.get('fldPopulation'))
-    sql_insert_query = """INSERT INTO cities_table.cities_csv (fldName,fldLat,fldLong,fldCountry,fldAbbreviation,fldCapitalStatus,fldPopulation) VALUES (%s, %s,%s, %s,%s, %s,%s) """
+    inputData = (content['LatD'], content['LatM'], content['LatS'],
+                 content['NS'], content['LonD'],
+                 content['LonM'], request.form.get('LonS'))
+    sql_insert_query = """INSERT INTO cities_table.cities_csv (LatD,LatM,LatS,NS,LonD,LonM,LonS) VALUES (%s, %s,%s, %s,%s, %s,%s) """
     cursor.execute(sql_insert_query, inputData)
     mysql.get_db().commit()
     resp = Response(status=201, mimetype='application/json')
