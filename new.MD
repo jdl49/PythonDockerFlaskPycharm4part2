@@ -1,0 +1,11 @@
+LatD
+LatM
+LatS
+NS
+LonD
+LonM
+LonS
+EW
+City
+State
+cities_cvs

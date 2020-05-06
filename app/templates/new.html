@@ -1,24 +1,64 @@
 {% extends "layout.html" %}
 {% block content %}
-
-<div class="card" class="m-5 p-2">
-    <h5 class="card-title">{{ city.City }} - {{ city.State }}</h5>
-
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item">{{ city.LatD }}</li>
-        <li class="list-group-item">{{ city.LatM }}</li>
-        <li class="list-group-item">{{ city.LatS }}</li>
-        <li class="list-group-item">{{ city.NS }}</li>
-        <li class="list-group-item">{{ city.LonD }}</li>
-        <li class="list-group-item">{{ city.LonM }}</li>
-        <li class="list-group-item">{{ city.LonS}}</li>
-        <li class="list-group-item">{{ city.EW }}</li>
-    </ul>
-    <div class="card-body">
-        <a href="/edit/{{city.id}}" class="card-link btn btn-primary">edit</a>
+<form action="/cities/new" method="POST">
+    <div class="row">
+        <div class="col">
+            <label for="LatD">LatD</label>
+            <input id="LatD" type="text" class="form-control" placeholder="LatD" name="LatD">
+        </div>
+        <div class="col">
+            <label for="LatM">LatM</label>
+            <input id="LatM" type="text" class="form-control" placeholder="LatM"
+                   name="LatM">
+        </div>
+        <div class="col">
+            <label for="LatS">LatS</label>
+            <input id="LatS" type="text" class="form-control" placeholder="LatS" name="LatS">
+        </div>
     </div>
-</div>
-<form action="/delete/{{city.id}}" method="post"><button type="submit" class="btn btn-danger">Save</button></form>
 
+    <div class="row">
+        <div class="col">
+            <label for="NS">NS</label>
+            <input id="NS" type="text" class="form-control" placeholder="NS" name="NS">
+        </div>
+        <div class="col">
+            <label for="LonD">LonD</label>
+            <input id="LonD" type="text" class="form-control" placeholder="LonD" name="LonD">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label for="LonM">LonM</label>
+            <input id="LonM" type="text" class="form-control" placeholder="LonM" name="LonM">
+        </div>
+        <div class="col">
+            <label for="LonS">LonS</label>
+            <input id="LonS" type="text" class="form-control" placeholder="LonS" name="LonS">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label for="EW">Capital Status</label>
+
+            <input id="EW" type="text" class="form-control" placeholder="EW"
+                   name="EW">
+        </div>
+        <div class="col">
+            <label for="City">City</label>
+            <input id="City" type="text" class="form-control" placeholder="City" name="City">
+        </div>
+    </div>
+        <div class="row">
+        <div class="col">
+            <label for="State">State</label>
+
+            <input id="State" type="text" class="form-control" placeholder="State"
+                   name="State">
+        </div>
+    </div>
+    <button type="submit" class="btn btn-success">Create</button>
+
+</form>
 
 {% endblock %}
