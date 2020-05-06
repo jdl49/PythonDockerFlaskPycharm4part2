@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+{% block content %}
+<form action="/edit/{{city.id}}" method="post">
+    <div class="row">
+        <div class="col">
+            <label for="City">City Name</label>
+            <input id="City" type="text" class="form-control" placeholder="City Name" name="City" value="{{city.City}}">
+        </div>
+        <div class="col">
+            <label for="State">State abbreviation</label>
+            <input id="State" type="text" class="form-control" placeholder="STATE Abbreviation"
+                   name="State" value="{{city.State}}">
+        </div>
+        <div class="col">
+            <label for="LonD">LonD</label>
+            <input id="LonD" type="text" class="form-control" placeholder="LonD" name="LonD" value="{{city.LonD}}">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <label for="LatD">LatD</label>
+            <input id="LatD" type="text" class="form-control" placeholder="City Latitude" name="LatD" value="{{city.LatD}}">
+        </div>
+        <div class="col">
+            <label for="LatM">LatM</label>
+            <input id="LatM" type="text" class="form-control" placeholder="LatM" name="LatM" value="{{city.LatM}}">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label for="NS">Capital Status</label>
+
+            <input id="NS" type="text" class="form-control" placeholder="Capital Status"
+                   name="NS" value="{{city.NS}}">
+        </div>
+        <div class="col">
+            <label for="EW">EW</label>
+            <input id="EW" type="text" class="form-control" placeholder="W" name="EW" value="{{city.EW}}">
+        </div>
+    </div>
+    <button type="submit" class="btn btn-success">Save</button>
+
+</form>
+{% endblock %}

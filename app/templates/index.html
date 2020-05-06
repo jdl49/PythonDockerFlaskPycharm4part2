@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block content %}
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">LatD</th>
+        <th scope="col">LatM</th>
+        <th scope="col">LatS</th>
+        <th scope="col">NS</th>
+        <th scope="col">LonD</th>
+        <th scope="col">LonM</th>
+        <th scope="col">LonS</th>
+        <th scope="col">EW</th>
+        <th scope="col">City</th>
+        <th scope="col">State</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    {% for city in cities %}
+    <tr>
+        <td>{{ city.LatD }}</td>
+        <td>{{ city.LatM }}</td>
+        <td>{{ city.LatS }}</td>
+        <td>{{ city.NS }}</td>
+        <td>{{ city.LonD }}</td>
+        <td>{{ city.LonM }}</td>
+        <td>{{ city.LonS }}</td>
+        <td>{{ city.EW }}</td>
+        <td><a href="view/{{city.id}}">{{ city.City }}</a></td>
+        <td>{{ city.State }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
