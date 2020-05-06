@@ -46,9 +46,9 @@ def form_update_post(city_id):
     cursor = mysql.get_db().cursor()
     inputData = (request.form.get('LatD'), request.form.get('LatM'), request.form.get('LatS'),
                  request.form.get('NS'), request.form.get('LonD'),
-                 request.form.get('LonM'), request.form.get('LonS'), city_id)
+                 request.form.get('LonM'), request.form.get('LonS'),request.form.get('EW'),request.form.get('City'),request.form.get('State'), city_id)
     sql_update_query = """UPDATE cities_table.cities_csv t SET t.LatD = %s, t.LatM = %s, t.LatS = %s, t.NS = 
-    %s, t.LonD = %s, t.LonM = %s, t.LonS = %s WHERE t.id = %s """
+    %s, t.LonD = %s, t.LonM = %s, t.LonS = %s, t.EW = %s, t.City = %s, t.State = %s WHERE t.id = %s """
     cursor.execute(sql_update_query, inputData)
     mysql.get_db().commit()
     return redirect("/", code=302)
@@ -64,7 +64,7 @@ def form_insert_post():
     inputData = (request.form.get('LatD'), request.form.get('LatM'), request.form.get('LatS'),
                  request.form.get('NS'), request.form.get('LonD'),
                  request.form.get('LonM'), request.form.get('LonS'))
-    sql_insert_query = """INSERT INTO cities_table.cities_csv (LatD,LatM,LatS,NS,LonD,LonM,LonS) VALUES (%s, %s,%s, %s,%s, %s,%s) """
+    sql_insert_query = """INSERT INTO cities_table.cities_csv (LatD,LatM,LatS,NS,LonD,LonM,LonS,EW,City,State) VALUES (%s, %s,%s, %s,%s, %s,%s) """
     cursor.execute(sql_insert_query, inputData)
     mysql.get_db().commit()
     return redirect("/", code=302)
@@ -121,7 +121,7 @@ def api_add() -> str:
     inputData = (content['LatD'], content['LatM'], content['LatS'],
                  content['NS'], content['LonD'],
                  content['LonM'], request.form.get('LonS'))
-    sql_insert_query = """INSERT INTO cities_table.cities_csv (LatD,LatM,LatS,NS,LonD,LonM,LonS) VALUES (%s, %s,%s, %s,%s, %s,%s) """
+    sql_insert_query = """INSERT INTO cities_table.cities_csv (LatD,LatM,LatS,NS,LonD,LonM,LonS) VALUES (%s, %s,%s, %s,%s, %s,%s,%s, %s,%s) """
     cursor.execute(sql_insert_query, inputData)
     mysql.get_db().commit()
     resp = Response(status=201, mimetype='application/json')
